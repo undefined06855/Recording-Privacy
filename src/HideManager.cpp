@@ -110,14 +110,14 @@ void HideManager::addHideButton(cocos2d::CCNode* node) {
 
     wrapper->setID("hide-button"_spr);
     wrapper->setUserObject("is-hidden"_spr, cocos2d::CCBool::create(true));
-    wrapper->setContentSize({ 90.f, 8.f });
+    wrapper->setContentSize({ 90.f, 18.f });
     wrapper->setLayout(
         geode::SimpleRowLayout::create()
             ->setGap(5.f)
             ->setMainAxisScaling(geode::AxisScaling::None)
     );
 
-    auto pos = cocos2d::CCPoint{ cocos2d::CCDirector::get()->getWinSize().width / 2.f, 20.f };
+    auto pos = cocos2d::CCPoint{ cocos2d::CCDirector::get()->getWinSize().width / 2.f, 9.f };
     auto localPos = node->convertToNodeSpace(pos);
     wrapper->setPosition(localPos);
     targetNode->addChild(wrapper);
