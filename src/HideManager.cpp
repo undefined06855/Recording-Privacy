@@ -145,14 +145,21 @@ void HideManager::update(float dt) {
         m_visibleTicketCount = 0;
     }
 
+    BOOL ret;
     if (m_ticketCount > 0 && m_visibleTicketCount == 0) {
         // WDA_EXCLUDEFROMCAPTURE sounds better, but in fact makes the window transparent, whereas WDA_MONITOR blacks
         // out the window
         // https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowdisplayaffinity
         // https://github.com/microsoft/Windows.UI.Composition-Win32-Samples/issues/64#issuecomment-663771707
-        SetWindowDisplayAffinity(hwnd, WDA_MONITOR);
+        ret = SetWindowDisplayAffinity(hwnd, WDA_MONITOR);
     } else {
-        SetWindowDisplayAffinity(hwnd, WDA_NONE);
+        ret = SetWindowDisplayAffinity(hwnd, WDA_NONE);
+    }
+
+    static bool shownWarning = false;
+    if (ret != TRUE && !shownWarning) {
+        shownWarning = true;
+        geode::log::warn("Failed to set window display affinity! (this message will not be shown again for this session)");
     }
 }
 
