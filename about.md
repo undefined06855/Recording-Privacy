@@ -9,9 +9,12 @@ make the screen visible again, so that you can temporarily show a conversation t
 
 This has been tested in OBS, Snipping Tool and Discord screenshares, though should work for any recording software.
 
-If this doesn't work for you, try changing from using Game Capture to Window Capture in OBS! (which you should be using
-regardless), and this won't work for Steam recordings or Steam streaming (since both Game Capture and Steam both hook
-into the game directly).
+If this doesn't work for you, try changing from using Game Capture to Window Capture or Display Capture in OBS! This mod
+won't work for Steam recordings, screenshots, or streaming (since both Game Capture and Steam hook into the game
+directly).
+
+This mod is **not** supported on Linux, since Wine has not implemented the `SetWindowDisplayAffinity` function from
+`user32.dll`.
 
 The current screens that are supported are:
 - Messages (and receiving messages)

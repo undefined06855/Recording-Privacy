@@ -1,4 +1,8 @@
 # Recording Privacy
+## v1.0.2
+- Added an initial value for m_visibleTicketCount in the constructor
+- Added a warning popup for if you're running under Wine which uninstalls the mod
+
 ## v1.0.1
 - Added a notice about how this is not compatible with Game Capture or Steam recording
 

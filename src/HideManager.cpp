@@ -1,8 +1,10 @@
 #include "HideManager.hpp"
 #include <Geode/ui/Button.hpp>
+#include <Geode/ui/PopupManager.hpp>
 
 HideManager::HideManager()
-    : m_ticketCount(0) {}
+    : m_ticketCount(0)
+    , m_visibleTicketCount(0) {}
 
 HideManager& HideManager::get() {
     static HideManager instance;
@@ -160,6 +162,29 @@ void HideManager::update(float dt) {
     if (ret != TRUE && !shownWarning) {
         shownWarning = true;
         geode::log::warn("Failed to set window display affinity! (this message will not be shown again for this session)");
+    }
+
+    static bool attemptedUninstall = false;
+    if (ret != TRUE && geode::utils::platform::isWine() && !attemptedUninstall) {
+        attemptedUninstall = true;
+        geode::log::warn("Alcohol consumption in the OS detected!");
+
+        for (auto hook : geode::Mod::get()->getHooks()) {
+            (void)hook->disable();
+        }
+
+        auto res = geode::Mod::get()->uninstall(true);
+        geode::ZStringView subtitle;
+        if (res.isErr()) {
+            subtitle = fmt::format("The mod <cr>failed</c> to be uninstalled!\n{}", res.unwrapErr());
+        } else {
+            subtitle = "The mod will be <co>uninstalled</c> on the next restart.";
+        }
+
+        geode::PopupManager::get().alert(
+            "Recording Privacy",
+            "<cj>Recording Privacy</c> is <cr>not</c> supported on <ca>Wine</c>!\n" + subtitle
+        ).showQueue();
     }
 }
 
