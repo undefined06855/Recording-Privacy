@@ -1,4 +1,7 @@
 # Recording Privacy
+## v1.1.0
+- Added Geode v6 and GD 2.2091 support!
+
 ## v1.0.2
 - Added an initial value for m_visibleTicketCount in the constructor
 - Added a warning popup for if you're running under Wine which uninstalls the mod
