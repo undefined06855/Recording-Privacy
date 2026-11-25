@@ -17,6 +17,8 @@ This mod is **not** supported on Linux, since Wine has not implemented the `SetW
 `user32.dll`.
 
 The current screens that are supported are:
-- Messages (and receiving messages)
+- Threads (e.g. groups and direct messages)
+- Notifications
 - Friends (and sending messages)
 - Friend Requests (and sending friend requests)
+- (Legacy) Messages (and receiving messages)

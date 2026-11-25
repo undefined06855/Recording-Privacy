@@ -1,4 +1,7 @@
 # Recording Privacy
+## v1.1.1
+- Fix the mod description for new 2.209 features
+
 ## v1.1.0
 - Added Geode v6 and GD 2.2091 support!
 
